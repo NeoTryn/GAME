@@ -1,14 +1,20 @@
 [
 {
   "directory": "/home/felix/dev/game/build",
-  "command": "/usr/bin/g++   -g -o CMakeFiles/game.dir/src/main.cpp.o -c /home/felix/dev/game/src/main.cpp",
+  "command": "/usr/bin/c++   -g -o CMakeFiles/game.dir/src/main.cpp.o -c /home/felix/dev/game/src/main.cpp",
   "file": "/home/felix/dev/game/src/main.cpp",
   "output": "CMakeFiles/game.dir/src/main.cpp.o"
 },
 {
   "directory": "/home/felix/dev/game/build",
-  "command": "/usr/bin/gcc   -g -o CMakeFiles/game.dir/src/glad.c.o -c /home/felix/dev/game/src/glad.c",
+  "command": "/usr/bin/cc   -g -o CMakeFiles/game.dir/src/glad.c.o -c /home/felix/dev/game/src/glad.c",
   "file": "/home/felix/dev/game/src/glad.c",
   "output": "CMakeFiles/game.dir/src/glad.c.o"
+},
+{
+  "directory": "/home/felix/dev/game/build",
+  "command": "/usr/bin/c++   -g -o CMakeFiles/game.dir/src/Shader.cpp.o -c /home/felix/dev/game/src/Shader.cpp",
+  "file": "/home/felix/dev/game/src/Shader.cpp",
+  "output": "CMakeFiles/game.dir/src/Shader.cpp.o"
 }
 ]

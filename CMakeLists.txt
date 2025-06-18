@@ -8,6 +8,8 @@ add_executable(game
                src/main.cpp
                src/glad.c             
                src/glad.h
+               src/Shader.cpp
+               src/Shader.hpp
                )
 
 target_link_libraries(game 

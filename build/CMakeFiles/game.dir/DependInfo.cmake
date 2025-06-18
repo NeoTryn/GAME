@@ -9,6 +9,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/felix/dev/game/src/glad.c" "CMakeFiles/game.dir/src/glad.c.o" "gcc" "CMakeFiles/game.dir/src/glad.c.o.d"
+  "/home/felix/dev/game/src/Shader.cpp" "CMakeFiles/game.dir/src/Shader.cpp.o" "gcc" "CMakeFiles/game.dir/src/Shader.cpp.o.d"
   "/home/felix/dev/game/src/main.cpp" "CMakeFiles/game.dir/src/main.cpp.o" "gcc" "CMakeFiles/game.dir/src/main.cpp.o.d"
   )
 
