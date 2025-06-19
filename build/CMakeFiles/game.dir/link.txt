@@ -1,1 +1,1 @@
-/usr/bin/c++ -g CMakeFiles/game.dir/src/main.cpp.o CMakeFiles/game.dir/src/glad.c.o CMakeFiles/game.dir/src/Shader.cpp.o -o game  -lglfw /usr/lib/x86_64-linux-gnu/libGLX.so /usr/lib/x86_64-linux-gnu/libOpenGL.so 
+/usr/bin/c++ -g CMakeFiles/game.dir/src/main.cpp.o CMakeFiles/game.dir/src/glad.c.o CMakeFiles/game.dir/src/Shader.cpp.o CMakeFiles/game.dir/src/Game.cpp.o -o game  -lglfw /usr/lib/x86_64-linux-gnu/libGLX.so /usr/lib/x86_64-linux-gnu/libOpenGL.so 

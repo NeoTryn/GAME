@@ -1,10 +1,7 @@
 #include <iostream>
 
-#include "Shader.hpp"
+#include "Game.hpp"
 #include <GLFW/glfw3.h>
-
-void framebuffer_size_callback(GLFWwindow* window, int width, int height);
-void check_input(GLFWwindow* window);
 
 const float vertices[] = {
     -0.5f, -0.5f, 0.0f,
@@ -14,35 +11,7 @@ const float vertices[] = {
 
 int main() {
 
-    // Window hints have to be ABOVE glfwInit() otherwise window creation doesnt work -> CIA is making GLFW do shenanigans now
-    glfwWindowHint(GLFW_VERSION_MAJOR, 4);
-    glfwWindowHint(GLFW_VERSION_MINOR, 6);
-    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-
-    if (!glfwInit()) {
-        std::cout << "CIA wont even let me initialize GLFW!!!!\n";
-        return 1;
-    }
-
-    GLFWwindow* window = glfwCreateWindow(800, 600, "CIA is watching me", NULL, NULL);
-
-    if (!window) {
-        std::cout << "CIA has taken my window!!!!...\n";
-        glfwTerminate();
-        return 1;
-    }
-
-    glfwMakeContextCurrent(window);
-    glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
-
-    if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
-        std::cout << "CIA broke OpenGL on my PC....\n";
-        glfwTerminate();
-        return 1;
-    }
-
-    glViewport(0, 0, 800, 600);
-    glClearColor(0.0f, 0.5f, 1.0f, 1.0f);
+    Game game = {"CIA is watching me...", 800.0f, 600.0f};
 
     unsigned int VBO, VAO;
 
@@ -61,7 +30,21 @@ int main() {
 
     Shader shader = {"../src/shaders/vertex_shader_1.glsl", "../src/shaders/fragment_shader_1.glsl"};
 
-    while (!glfwWindowShouldClose(window)) {
+    shader.use();
+
+    glm::mat4 model = glm::mat4(1.0f);
+
+    model = glm::translate(model, glm::vec3(400.0f, 300.0f, 0.0f));
+
+    model = glm::scale(model, glm::vec3(500.0f));
+    
+    glm::mat4 projection = glm::mat4(1.0f);
+    projection = glm::ortho(0.0f, 800.0f, 600.0f, 0.0f, -1.0f, 1.0f);
+
+    shader.uniformMat4("model", model);
+    shader.uniformMat4("proj", projection);
+
+    while (!glfwWindowShouldClose(game.getWindow())) {
         glfwPollEvents();
 
         glClear(GL_COLOR_BUFFER_BIT);
@@ -71,20 +54,10 @@ int main() {
         glBindVertexArray(VAO);
         glDrawArrays(GL_TRIANGLES, 0, 3);
 
-        glfwSwapBuffers(window);
-        check_input(window);
+        glfwSwapBuffers(game.getWindow());
+        game.check_input(game.getWindow());
     }
 
     glfwTerminate();
     return 0;
-}
-
-void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
-    glViewport(0, 0, width, height);
-}
-
-void check_input(GLFWwindow* window) {
-    if (glfwGetKey(window, GLFW_KEY_ESCAPE)) {
-        glfwSetWindowShouldClose(window, GLFW_TRUE);
-    }
 }
