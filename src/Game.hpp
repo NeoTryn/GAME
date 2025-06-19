@@ -1,5 +1,10 @@
 #include "Shader.hpp"
+#include "Renderer.hpp"
+
 #include <GLFW/glfw3.h>
+
+//#define STB_IMAGE_IMPLEMENTATION
+//#include "stb_image.h"
 
 #ifndef GAME_HPP
 #define GAME_HPP
@@ -8,6 +13,7 @@ class Game {
 private:
 
     GLFWwindow* window;
+    Renderer renderer;
 
 public:
 

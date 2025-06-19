@@ -22,5 +22,11 @@
   "command": "/usr/bin/c++  -I/home/felix/include -g -o CMakeFiles/game.dir/src/Game.cpp.o -c /home/felix/dev/game/src/Game.cpp",
   "file": "/home/felix/dev/game/src/Game.cpp",
   "output": "CMakeFiles/game.dir/src/Game.cpp.o"
+},
+{
+  "directory": "/home/felix/dev/game/build",
+  "command": "/usr/bin/c++  -I/home/felix/include -g -o CMakeFiles/game.dir/src/Renderer.cpp.o -c /home/felix/dev/game/src/Renderer.cpp",
+  "file": "/home/felix/dev/game/src/Renderer.cpp",
+  "output": "CMakeFiles/game.dir/src/Renderer.cpp.o"
 }
 ]

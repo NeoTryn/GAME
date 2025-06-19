@@ -29,6 +29,14 @@ Game::Game(const char* title, float frustum_width, float frustum_height) {
 
     glViewport(0, 0, frustum_width, frustum_height);
     glClearColor(0.0f, 0.5f, 1.0f, 1.0f);
+
+    const float vertices[] = {
+        -0.5f, -0.5f, 0.0f,
+         0.5f, -0.5f, 0.0f,
+         0.0f,  0.5f, 0.0f
+    };
+
+    renderer.generate(vertices, 3, 0, 0);
 }
 
 GLFWwindow* Game::getWindow() {

@@ -401,4 +401,5 @@ CMakeFiles/game.dir/src/Game.cpp.o: /home/felix/dev/game/src/Game.cpp \
  /home/felix/include/glm/gtc/../gtc/../ext/vector_uint1.hpp \
  /home/felix/include/glm/gtc/../gtc/../ext/vector_uint1_sized.hpp \
  /usr/include/c++/13/cstring /usr/include/string.h /usr/include/strings.h \
- /home/felix/include/glm/gtc/type_ptr.inl /usr/include/GLFW/glfw3.h
+ /home/felix/include/glm/gtc/type_ptr.inl \
+ /home/felix/dev/game/src/Renderer.hpp /usr/include/GLFW/glfw3.h

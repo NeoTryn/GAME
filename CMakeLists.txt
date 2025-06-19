@@ -11,6 +11,9 @@ add_executable(game
                src/Shader.hpp
                src/Game.hpp
                src/Game.cpp
+               src/Renderer.hpp
+               src/Renderer.cpp
+               src/stb_image.h
                )
 
 target_include_directories(game PUBLIC ~/include)
