@@ -23,8 +23,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-// modified this line to correctly find the glad.h file
-#include "glad.h"
+#include <glad/glad.h>
 
 static void* get_proc(const char *namez);
 

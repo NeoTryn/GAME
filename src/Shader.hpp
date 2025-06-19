@@ -2,7 +2,11 @@
 #include <fstream>
 #include <string>
 
-#include "glad.h"
+#include <glad/glad.h>
+
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 #ifndef SHADER_HPP
 #define SHADER_HPP
@@ -22,6 +26,12 @@ public:
     void checkProgramLinking(unsigned int program);
 
     void use();
+
+    void uniformInt(std::string location, int value);
+    void uniformFloat(std::string location, float value);
+    void uniformBool(std::string location, bool value);
+
+    void uniformVec2(std::string location);
 };
 
 #endif

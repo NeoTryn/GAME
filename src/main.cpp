@@ -6,22 +6,6 @@
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void check_input(GLFWwindow* window);
 
-const char* vertexShaderCode = ""
-"#version 460 core\n"
-"layout (location = 0) in vec3 pos;\n"
-"\n"
-"void main() {\n"
-"   gl_Position = vec4(pos, 1.0);\n"
-"}\n";
-
-const char* fragmentShaderCode = ""
-"#version 460 core\n"
-"out vec4 color;\n"
-"\n"
-"void main() {\n"
-"   color = vec4(0.2f, 0.5f, 0.8f, 1.0f);\n"
-"}\n";
-
 const float vertices[] = {
     -0.5f, -0.5f, 0.0f,
      0.5f, -0.5f, 0.0f,
