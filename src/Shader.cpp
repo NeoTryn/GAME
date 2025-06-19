@@ -32,6 +32,14 @@ Shader::Shader(const char* vertPath, const char* fragPath) {
     glDeleteShader(fragmentShader);
 }
 
+unsigned int Shader::getProgram() {
+    return Shader::program;
+}
+
+void Shader::setProgram(unsigned int program) {
+    Shader::program = program;
+} 
+
 std::string Shader::readFile(const char* path) {
     try {
         std::string line, text;
@@ -88,4 +96,40 @@ void Shader::checkProgramLinking(unsigned int program) {
 
 void Shader::use() {
     glUseProgram(Shader::program);
+}
+
+void Shader::uniformInt(const char* name, int value) {
+    glUniform1i(glGetUniformLocation(Shader::program, name), value);
+}
+
+void Shader::uniformFloat(const char* name, float value) {
+    glUniform1f(glGetUniformLocation(Shader::program, name), value);
+}
+
+void Shader::uniformBool(const char* name, bool value) {
+    glUniform1i(glGetUniformLocation(Shader::program, name), static_cast<int>(value));
+}
+
+void Shader::uniformVec2(const char* name, glm::vec2 value) {
+    glUniform2fv(glGetUniformLocation(Shader::program, name), 1, glm::value_ptr(value));
+}
+
+void Shader::uniformVec3(const char* name, glm::vec3 value) {
+    glUniform3fv(glGetUniformLocation(Shader::program, name), 1, glm::value_ptr(value));
+}
+
+void Shader::uniformVec4(const char* name, glm::vec4 value) {
+    glUniform4fv(glGetUniformLocation(Shader::program, name), 1, glm::value_ptr(value));
+}
+
+void Shader::uniformMat2(const char* name, glm::mat2 value) {
+    glUniformMatrix2fv(glGetUniformLocation(Shader::program, name), 1, GL_FALSE, glm::value_ptr(value));
+}
+
+void Shader::uniformMat3(const char* name, glm::mat3 value) {
+    glUniformMatrix3fv(glGetUniformLocation(Shader::program, name), 1, GL_FALSE, glm::value_ptr(value));
+}
+
+void Shader::uniformMat4(const char* name, glm::mat4 value) {
+    glUniformMatrix4fv(glGetUniformLocation(Shader::program, name), 1, GL_FALSE, glm::value_ptr(value));
 }
