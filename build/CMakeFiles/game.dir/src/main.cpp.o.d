@@ -149,11 +149,7 @@ CMakeFiles/game.dir/src/main.cpp.o: /home/felix/dev/game/src/main.cpp \
  /usr/include/c++/13/bits/basic_ios.tcc \
  /usr/include/c++/13/bits/ostream.tcc /usr/include/c++/13/istream \
  /usr/include/c++/13/bits/istream.tcc /home/felix/dev/game/src/Game.hpp \
- /home/felix/dev/game/src/Shader.hpp /usr/include/c++/13/fstream \
- /usr/include/c++/13/bits/codecvt.h \
- /usr/include/x86_64-linux-gnu/c++/13/bits/basic_file.h \
- /usr/include/x86_64-linux-gnu/c++/13/bits/c++io.h \
- /usr/include/c++/13/bits/fstream.tcc /home/felix/include/glad/glad.h \
+ /home/felix/dev/game/src/Renderer.hpp /home/felix/include/glad/glad.h \
  /home/felix/include/KHR/khrplatform.h \
  /usr/lib/gcc/x86_64-linux-gnu/13/include/stdint.h /usr/include/stdint.h \
  /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
@@ -402,4 +398,9 @@ CMakeFiles/game.dir/src/main.cpp.o: /home/felix/dev/game/src/main.cpp \
  /home/felix/include/glm/gtc/../gtc/../ext/vector_uint1_sized.hpp \
  /usr/include/c++/13/cstring /usr/include/string.h /usr/include/strings.h \
  /home/felix/include/glm/gtc/type_ptr.inl \
- /home/felix/dev/game/src/Renderer.hpp /usr/include/GLFW/glfw3.h
+ /home/felix/dev/game/src/stb_image.h /usr/include/c++/13/stdlib.h \
+ /home/felix/dev/game/src/Shader.hpp /usr/include/c++/13/fstream \
+ /usr/include/c++/13/bits/codecvt.h \
+ /usr/include/x86_64-linux-gnu/c++/13/bits/basic_file.h \
+ /usr/include/x86_64-linux-gnu/c++/13/bits/c++io.h \
+ /usr/include/c++/13/bits/fstream.tcc /usr/include/GLFW/glfw3.h

@@ -9,6 +9,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/game.dir/src/glad.c.o.d"
   "CMakeFiles/game.dir/src/main.cpp.o"
   "CMakeFiles/game.dir/src/main.cpp.o.d"
+  "CMakeFiles/game.dir/src/stb_image_implementation.cpp.o"
+  "CMakeFiles/game.dir/src/stb_image_implementation.cpp.o.d"
   "game"
   "game.pdb"
 )

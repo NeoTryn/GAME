@@ -13,6 +13,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/felix/dev/game/src/Renderer.cpp" "CMakeFiles/game.dir/src/Renderer.cpp.o" "gcc" "CMakeFiles/game.dir/src/Renderer.cpp.o.d"
   "/home/felix/dev/game/src/Shader.cpp" "CMakeFiles/game.dir/src/Shader.cpp.o" "gcc" "CMakeFiles/game.dir/src/Shader.cpp.o.d"
   "/home/felix/dev/game/src/main.cpp" "CMakeFiles/game.dir/src/main.cpp.o" "gcc" "CMakeFiles/game.dir/src/main.cpp.o.d"
+  "/home/felix/dev/game/src/stb_image_implementation.cpp" "CMakeFiles/game.dir/src/stb_image_implementation.cpp.o" "gcc" "CMakeFiles/game.dir/src/stb_image_implementation.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

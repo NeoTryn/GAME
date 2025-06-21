@@ -30,10 +30,15 @@ Game::Game(const char* title, float frustum_width, float frustum_height) {
     glViewport(0, 0, frustum_width, frustum_height);
     glClearColor(0.0f, 0.5f, 1.0f, 1.0f);
 
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);  
+
     Game::shader = {"../src/shaders/vertex_shader_1.glsl", "../src/shaders/fragment_shader_1.glsl"};
 
-    Game::renderer = {};
+    Game::renderer = {&shader};
     Game::renderer.initialize();
+
+    Game::renderer.loadTexture("../img/awesomeface.png", "face", 0);
 }
 
 GLFWwindow* Game::getWindow() {
@@ -63,26 +68,18 @@ void Game::clear() {
 }
 
 void Game::render() {
-    shader.use();
-    glBindVertexArray(Game::renderer.getVAO());
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, Game::renderer.getEBO());
-
-    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+    Game::renderer.render();
 }
 
 void Game::update() {
+
+    Game::renderer.drawSprite("face", glm::vec2(400.0f, 300.0f), glm::vec2(400.0f, 300.0f), 45.0f, glm::vec3(0.0f, 1.0f, 0.0f), 0);
+
     shader.use();
 
-    glm::mat4 model = glm::mat4(1.0f);
-
-    model = glm::translate(model, glm::vec3(400.0f, 300.0f, 0.0f));
-
-    model = glm::scale(model, glm::vec3(500.0f));
-    
     glm::mat4 projection = glm::mat4(1.0f);
     projection = glm::ortho(0.0f, 800.0f, 600.0f, 0.0f, -1.0f, 1.0f);
 
-    shader.uniformMat4("model", model);
     shader.uniformMat4("proj", projection);
 }
 

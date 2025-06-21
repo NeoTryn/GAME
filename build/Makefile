@@ -249,6 +249,30 @@ src/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
+src/stb_image_implementation.o: src/stb_image_implementation.cpp.o
+.PHONY : src/stb_image_implementation.o
+
+# target to build an object file
+src/stb_image_implementation.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/src/stb_image_implementation.cpp.o
+.PHONY : src/stb_image_implementation.cpp.o
+
+src/stb_image_implementation.i: src/stb_image_implementation.cpp.i
+.PHONY : src/stb_image_implementation.i
+
+# target to preprocess a source file
+src/stb_image_implementation.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/src/stb_image_implementation.cpp.i
+.PHONY : src/stb_image_implementation.cpp.i
+
+src/stb_image_implementation.s: src/stb_image_implementation.cpp.s
+.PHONY : src/stb_image_implementation.s
+
+# target to generate assembly for a file
+src/stb_image_implementation.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/src/stb_image_implementation.cpp.s
+.PHONY : src/stb_image_implementation.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -273,6 +297,9 @@ help:
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/stb_image_implementation.o"
+	@echo "... src/stb_image_implementation.i"
+	@echo "... src/stb_image_implementation.s"
 .PHONY : help
 
 
