@@ -4,12 +4,6 @@
 
 #include <GLFW/glfw3.h>
 
-const float vertices[] = {
-    -0.5f, -0.5f, 0.0f,
-     0.5f, -0.5f, 0.0f,
-     0.0f,  0.5f, 0.0f
-};
-
 int main() {
 
     Game game = {"CIA is watching me...", 800.0f, 600.0f};
@@ -30,18 +24,22 @@ int main() {
     shader.uniformMat4("model", model);
     shader.uniformMat4("proj", projection);
 
-    while (!glfwWindowShouldClose(game.getWindow())) {
-        glfwPollEvents();
+    std::cout << game.getRenderer()->getEBO();
 
+   
+    while (!glfwWindowShouldClose(game.getWindow())) {
+        game.check_input(game.getWindow());
         glClear(GL_COLOR_BUFFER_BIT);
 
         //glUseProgram(shaderProgram);
         shader.use();
-        //glBindVertexArray(VAO);
-        glDrawArrays(GL_TRIANGLES, 0, 3);
+        glBindVertexArray(game.getRenderer()->getVAO());
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, game.getRenderer()->getEBO());
+
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 
         glfwSwapBuffers(game.getWindow());
-        game.check_input(game.getWindow());
+        glfwPollEvents();
     }
 
     glfwTerminate();

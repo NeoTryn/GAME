@@ -30,6 +30,8 @@ public:
     void render();
 
     void clean();
+
+    Renderer* getRenderer();
 };
 
 #endif

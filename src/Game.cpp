@@ -30,13 +30,8 @@ Game::Game(const char* title, float frustum_width, float frustum_height) {
     glViewport(0, 0, frustum_width, frustum_height);
     glClearColor(0.0f, 0.5f, 1.0f, 1.0f);
 
-    const float vertices[] = {
-        -0.5f, -0.5f, 0.0f,
-         0.5f, -0.5f, 0.0f,
-         0.0f,  0.5f, 0.0f
-    };
-
-    renderer.generate(vertices, 3, 0, 0);
+    Game::renderer = {};
+    Game::renderer.initialize();
 }
 
 GLFWwindow* Game::getWindow() {
@@ -55,4 +50,8 @@ void Game::check_input(GLFWwindow* window) {
     if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
         glfwSetWindowShouldClose(window, GLFW_TRUE);
     }
+}
+
+Renderer* Game::getRenderer() {
+    return &renderer;
 }
