@@ -13,6 +13,8 @@ class Game {
 private:
 
     GLFWwindow* window;
+
+    Shader shader;
     Renderer renderer;
 
 public:
@@ -30,6 +32,8 @@ public:
     void render();
 
     void clean();
+
+    void run();
 
     Renderer* getRenderer();
 };

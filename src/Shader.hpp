@@ -19,7 +19,9 @@ private:
 public:
 
     Shader(const char* vertPath, const char* fragPath);
-
+    Shader() = default;
+    ~Shader() = default;
+ 
     unsigned int getProgram();
     void setProgram(unsigned int program);
 
@@ -41,6 +43,8 @@ public:
     void uniformMat2(const char* name, glm::mat2 value);
     void uniformMat3(const char* name, glm::mat3 value);
     void uniformMat4(const char* name, glm::mat4 value);
+
+    void destroy();
 };
 
 #endif

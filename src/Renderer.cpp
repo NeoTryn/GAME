@@ -44,3 +44,8 @@ unsigned int Renderer::getVAO() {
 unsigned int Renderer::getEBO() {
     return Renderer::EBO;
 }
+
+void Renderer::destroy() {
+    glDeleteBuffers(1, &EBO);
+    glDeleteVertexArrays(1, &VAO);
+}

@@ -24,6 +24,8 @@ public:
 
     unsigned int getVAO();
     unsigned int getEBO();
+
+    void destroy();
 };
 
 #endif

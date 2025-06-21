@@ -133,3 +133,7 @@ void Shader::uniformMat3(const char* name, glm::mat3 value) {
 void Shader::uniformMat4(const char* name, glm::mat4 value) {
     glUniformMatrix4fv(glGetUniformLocation(Shader::program, name), 1, GL_FALSE, glm::value_ptr(value));
 }
+
+void Shader::destroy() {
+    glDeleteProgram(Shader::program);
+}
