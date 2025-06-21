@@ -78,7 +78,7 @@ void Game::update() {
     shader.use();
 
     glm::mat4 projection = glm::mat4(1.0f);
-    projection = glm::ortho(0.0f, 800.0f, 600.0f, 0.0f, -1.0f, 1.0f);
+    projection = glm::ortho(0.0f, FRUSTUM_WIDTH, FRUSTUM_HEIGHT, 0.0f, -1.0f, 1.0f);
 
     shader.uniformMat4("proj", projection);
 }
