@@ -16,6 +16,8 @@ private:
     Shader shader;
     Renderer renderer;
 
+    float lastTime, currentTime, deltaTime;
+
 public:
 
     Game(const char* title, float frustum_width, float frustum_height);

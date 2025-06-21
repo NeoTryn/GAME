@@ -39,6 +39,8 @@ Game::Game(const char* title, float frustum_width, float frustum_height) {
     Game::renderer.initialize();
 
     Game::renderer.loadTexture("../img/awesomeface.png", "face", 0);
+
+    Game::lastTime = static_cast<float>(glfwGetTime());
 }
 
 GLFWwindow* Game::getWindow() {
@@ -72,8 +74,14 @@ void Game::render() {
 }
 
 void Game::update() {
+    Game::currentTime = static_cast<float>(glfwGetTime());
 
-    Game::renderer.drawSprite("face", glm::vec2(400.0f, 300.0f), glm::vec2(400.0f, 300.0f), 45.0f, glm::vec3(0.0f, 1.0f, 0.0f), 0);
+    Game::deltaTime = Game::currentTime - Game::lastTime;
+    
+    Game::lastTime = Game::currentTime;
+    
+
+    Game::renderer.drawSprite("face", glm::vec2(400.0f, 300.0f), glm::vec2(400.0f, 300.0f), 0.0f, glm::vec3(0.0f, 1.0f, 0.0f), 0);
 
     shader.use();
 
