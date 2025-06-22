@@ -403,4 +403,5 @@ CMakeFiles/game.dir/src/main.cpp.o: /home/felix/dev/game/src/main.cpp \
  /usr/include/c++/13/bits/codecvt.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/basic_file.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/c++io.h \
- /usr/include/c++/13/bits/fstream.tcc /usr/include/GLFW/glfw3.h
+ /usr/include/c++/13/bits/fstream.tcc /home/felix/dev/game/src/Player.hpp \
+ /usr/include/GLFW/glfw3.h

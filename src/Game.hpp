@@ -1,4 +1,5 @@
 #include "Renderer.hpp"
+#include "Player.hpp"
 
 #include <GLFW/glfw3.h>
 
@@ -15,6 +16,7 @@ private:
 
     Shader shader;
     Renderer renderer;
+    Player player;
 
     float lastTime, currentTime, deltaTime;
 

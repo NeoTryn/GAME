@@ -34,5 +34,11 @@
   "command": "/usr/bin/c++  -I/home/felix/include -g -o CMakeFiles/game.dir/src/stb_image_implementation.cpp.o -c /home/felix/dev/game/src/stb_image_implementation.cpp",
   "file": "/home/felix/dev/game/src/stb_image_implementation.cpp",
   "output": "CMakeFiles/game.dir/src/stb_image_implementation.cpp.o"
+},
+{
+  "directory": "/home/felix/dev/game/build",
+  "command": "/usr/bin/c++  -I/home/felix/include -g -o CMakeFiles/game.dir/src/Player.cpp.o -c /home/felix/dev/game/src/Player.cpp",
+  "file": "/home/felix/dev/game/src/Player.cpp",
+  "output": "CMakeFiles/game.dir/src/Player.cpp.o"
 }
 ]
