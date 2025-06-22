@@ -14,12 +14,12 @@
 class Player {
 private:
 
-    float speed;
+    float speed = 100.0f;
     glm::vec2 position;
     glm::vec2 size;
 
-    std::string textureName;
-    const char* texturePath;
+    std::string textureName = "face";
+    const char* texturePath = "../img/awesomeface.png";
 
 public:
 

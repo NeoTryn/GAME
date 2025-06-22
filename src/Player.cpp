@@ -3,17 +3,11 @@
 Player::Player(glm::vec2 position, glm::vec2 size) {
     Player::position = position;
     Player::size = size;
-    Player::speed = 100.0f;
-    Player::textureName = "face";
-    Player::texturePath = "../img/awesomeface.png";
 }
 
 Player::Player() {
     Player::position = glm::vec2(400.0f, 300.0f);
     Player::size = glm::vec2(400.0f, 300.0f);
-    Player::speed = 100.0f;
-    Player::textureName = "face";
-    Player::texturePath = "../img/awesomeface.png";
 }
 
 glm::vec2 Player::getPosition() {
