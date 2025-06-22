@@ -35,12 +35,12 @@ Game::Game(const char* title, float frustum_width, float frustum_height) {
 
     Game::shader = {"../src/shaders/vertex_shader_1.glsl", "../src/shaders/fragment_shader_1.glsl"};
 
-    Game::player = {glm::vec2(400.0f, 300.0f)};
+    Game::player = {glm::vec2(400.0f, 300.0f), glm::vec2(400.0f, 300.0f)};
 
     Game::renderer = {&shader};
     Game::renderer.initialize();
 
-    Game::renderer.loadTexture("../img/awesomeface.png", "face", 0);
+    Game::renderer.loadTexture(Game::player.getTexturePath(), Game::player.getTextureName());
 
     Game::lastTime = static_cast<float>(glfwGetTime()); 
 }
@@ -82,8 +82,11 @@ void Game::update() {
     
     Game::lastTime = Game::currentTime;
     
+    // enabling player movement
     Game::player.move(Game::window, Game::deltaTime);
-    Game::renderer.drawSprite(Game::player.getTextureName(), Game::player.getPosition(), glm::vec2(400.0f, 300.0f), 0.0f, glm::vec3(0.0f, 1.0f, 0.0f), 0);
+
+    // drawing the player
+    Game::renderer.drawSprite(Game::player.getTextureName(), Game::player.getPosition(), Game::player.getSize(), 0.0f, glm::vec3(0.0f, 1.0f, 0.0f), 0);
 
     shader.use();
 

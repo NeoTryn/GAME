@@ -1,23 +1,35 @@
 #include "Player.hpp"
 
-Player::Player(glm::vec2 position) {
+Player::Player(glm::vec2 position, glm::vec2 size) {
     Player::position = position;
-    Player::speed = 60.0f;
+    Player::size = size;
+    Player::speed = 100.0f;
     Player::textureName = "face";
+    Player::texturePath = "../img/awesomeface.png";
 }
 
 Player::Player() {
-    Player::position = glm::vec2(300.0f, 400.0f);
-    Player::speed = 60.0f;
+    Player::position = glm::vec2(400.0f, 300.0f);
+    Player::size = glm::vec2(400.0f, 300.0f);
+    Player::speed = 100.0f;
     Player::textureName = "face";
+    Player::texturePath = "../img/awesomeface.png";
 }
 
 glm::vec2 Player::getPosition() {
     return Player::position; 
 }
 
+glm::vec2 Player::getSize() {
+    return Player::size;
+}
+
 std::string Player::getTextureName() {
     return Player::textureName;
+}
+
+const char* Player::getTexturePath() {
+    return Player::texturePath;
 }
 
 void Player::move(GLFWwindow* window, float deltaTime) {

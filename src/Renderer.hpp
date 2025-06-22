@@ -41,7 +41,7 @@ public:
 
     void initialize();
 
-    void loadTexture(const char* path, std::string name, int unit);
+    void loadTexture(const char* path, std::string name);
 
     void render();
     void drawSprite(std::string name, glm::vec2 position, glm::vec2 size, float rotate, glm::vec3 color, int unit);

@@ -44,7 +44,7 @@ void Renderer::initialize() {
     glDeleteBuffers(1, &VBO); 
 }
 
-void Renderer::loadTexture(const char* path, std::string name, int unit) {
+void Renderer::loadTexture(const char* path, std::string name) {
 
     unsigned int texture;
 	glGenTextures(1, &texture);
@@ -70,14 +70,12 @@ void Renderer::loadTexture(const char* path, std::string name, int unit) {
     Texture newTexture = {width, height, nrChannels, texture};
     Renderer::textures[name] = newTexture;
 
-    Renderer::shader->use();
-    Renderer::shader->uniformInt("image", unit);
-
     glBindTexture(GL_TEXTURE_2D, 0);
 }
 
 void Renderer::drawSprite(std::string name, glm::vec2 position, glm::vec2 size, float rotate, glm::vec3 color, int unit) {
     Renderer::shader->use();
+    Renderer::shader->uniformInt("image", unit);
 
     glm::mat4 model = glm::mat4(1.0f);
     model = glm::translate(model, glm::vec3(position, 0.0f));

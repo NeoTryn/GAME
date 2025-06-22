@@ -16,19 +16,24 @@ private:
 
     float speed;
     glm::vec2 position;
+    glm::vec2 size;
 
     std::string textureName;
+    const char* texturePath;
 
 public:
 
-    Player(glm::vec2 position);
+    Player(glm::vec2 position, glm::vec2 size);
     Player();
     ~Player() = default;
 
     void move(GLFWwindow* window, float deltaTime);
 
     glm::vec2 getPosition();
+    glm::vec2 getSize();
+
     std::string getTextureName();
+    const char* getTexturePath();
 };
 
 #endif
