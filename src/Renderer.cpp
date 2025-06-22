@@ -4,44 +4,70 @@ Renderer::Renderer(Shader* shader) {
     Renderer::shader = shader;
 }
 
-void Renderer::initialize() {
+void Renderer::loadBatch(std::string name, int count) {
     
-    const float vertices[] = {
-        0.0f, 1.0f, 0.0f, 0.0f, 1.0f,
-        1.0f, 0.0f, 0.0f, 1.0f, 0.0f,
-        0.0f, 0.0f, 0.0f, 0.0f, 0.0f,
-        1.0f, 1.0f, 0.0f, 1.0f, 1.0f
-    };
+    std::vector<unsigned int> VAOs;
 
     const unsigned int indices[] = {
-         0, 1, 2,
-         0, 1, 3 
+        0, 1, 2,
+        2, 1, 3
     };
-    
-    unsigned int VBO;
-
-    glGenVertexArrays(1, &VAO);
-    glBindVertexArray(VAO);
-
-    glGenBuffers(1, &VBO);
-    glBindBuffer(GL_ARRAY_BUFFER, VBO);
 
     glGenBuffers(1, &EBO);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, Renderer::EBO);
 
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), &vertices, GL_STATIC_DRAW);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), &indices, GL_STATIC_DRAW);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(0));
-    glEnableVertexAttribArray(0);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
-    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
-    glEnableVertexAttribArray(1);
+    for (int i = 0; i < count; i++) {
 
-    glBindVertexArray(0);
+        float one = static_cast<float>(1) / static_cast<float>(count);
 
-    glBindBuffer(GL_ARRAY_BUFFER, 0);
-    glDeleteBuffers(1, &VBO); 
+        std::cout << one << "\n";
+
+        float start = static_cast<float>(one * i);
+        float end = static_cast<float>(one * i) + one;
+
+        std::cout << start << "\n";
+        std::cout << end << "\n";
+
+        const float vertices[] = {
+            -1.0f,  1.0f, 0.0f, start,  1.0f,
+            -1.0f, -1.0f, 0.0f, start,  0.0f,
+             1.0f,  1.0f, 0.0f, end  ,  1.0f,
+             1.0f, -1.0f, 0.0f, end  ,  0.0f
+        };
+
+        unsigned int VBO, VAO;
+
+        glGenVertexArrays(1, &VAO);
+        glBindVertexArray(VAO);
+
+        glGenBuffers(1, &VBO);
+        glBindBuffer(GL_ARRAY_BUFFER, VBO);
+
+        glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+
+        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(0));
+        glEnableVertexAttribArray(0);
+
+        glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
+        glEnableVertexAttribArray(1);
+
+        glBindVertexArray(0);
+
+        glBindBuffer(GL_VERTEX_ARRAY, 0);
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+
+        glDeleteBuffers(1, &VBO);
+
+        VAOs.push_back(VAO);
+    }
+
+    Renderer::VAO[name] = VAOs;
 }
 
 void Renderer::loadTexture(const char* path, std::string name) {
@@ -96,10 +122,10 @@ void Renderer::drawSprite(std::string name, glm::vec2 position, glm::vec2 size, 
     glBindTexture(GL_TEXTURE_2D, Renderer::textures[name].texture);
 }
 
-void Renderer::render() {
+void Renderer::render(std::string name, int unit) {
     Renderer::shader->use();
 
-    glBindVertexArray(Renderer::VAO);
+    glBindVertexArray(Renderer::VAO[name][unit]);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, Renderer::EBO);
 
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
@@ -108,7 +134,7 @@ void Renderer::render() {
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 }
 
-unsigned int Renderer::getVAO() {
+std::unordered_map<std::string, std::vector<unsigned int>> Renderer::getVAO() {
     return Renderer::VAO;
 }
 
@@ -118,7 +144,11 @@ unsigned int Renderer::getEBO() {
 
 void Renderer::destroy() {
     glDeleteBuffers(1, &EBO);
-    glDeleteVertexArrays(1, &VAO);
+
+    for (const auto& pair : Renderer::VAO) {
+        std::vector<unsigned int> VAOs = pair.second;
+        glDeleteVertexArrays(pair.second.size(), VAOs.data());
+    }
 }
 
 Texture::Texture(int width, int height, int nrChannels, unsigned int texture) {

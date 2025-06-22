@@ -5,6 +5,7 @@
 #include <glm/gtc/type_ptr.hpp>
 
 #include <unordered_map>
+#include <vector>
 #include <iostream>
 
 #include "stb_image.h"
@@ -26,8 +27,9 @@ struct Texture{
 class Renderer {
 private:
 
-    unsigned int VAO, EBO;
+    unsigned int EBO;
 
+    std::unordered_map<std::string, std::vector<unsigned int>> VAO;
     std::unordered_map<std::string, Texture> textures;
 
     Shader* shader;
@@ -39,14 +41,13 @@ public:
     Renderer() = default;
     ~Renderer() = default;
 
-    void initialize();
-
+    void loadBatch(std::string name, int count);
     void loadTexture(const char* path, std::string name);
 
-    void render();
+    void render(std::string name, int unit);
     void drawSprite(std::string name, glm::vec2 position, glm::vec2 size, float rotate, glm::vec3 color, int unit);
 
-    unsigned int getVAO();
+    std::unordered_map<std::string, std::vector<unsigned int>> getVAO();
     unsigned int getEBO();
 
     void destroy();

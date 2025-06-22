@@ -37,12 +37,14 @@ Game::Game(const char* title, float frustum_width, float frustum_height) {
 
     Game::player = {glm::vec2(400.0f, 300.0f), glm::vec2(400.0f, 300.0f)};
 
+    std::cout << Game::player.getCount() << "\n";
+
     Game::renderer = {&shader};
-    Game::renderer.initialize();
+    Game::renderer.loadBatch(Game::player.getName(), Game::player.getCount());
 
-    Game::renderer.loadTexture(Game::player.getTexturePath(), Game::player.getTextureName());
+    Game::renderer.loadTexture(Game::player.getTexturePath(), Game::player.getName());
 
-    Game::lastTime = static_cast<float>(glfwGetTime()); 
+    Game::lastTime = static_cast<float>(glfwGetTime());
 }
 
 GLFWwindow* Game::getWindow() {
@@ -72,7 +74,7 @@ void Game::clear() {
 }
 
 void Game::render() {
-    Game::renderer.render();
+    Game::renderer.render(Game::player.getName(), static_cast<int>(glfwGetTime()));
 }
 
 void Game::update() {
@@ -86,7 +88,7 @@ void Game::update() {
     Game::player.move(Game::window, Game::deltaTime);
 
     // drawing the player
-    Game::renderer.drawSprite(Game::player.getTextureName(), Game::player.getPosition(), Game::player.getSize(), 0.0f, glm::vec3(0.0f, 1.0f, 0.0f), 0);
+    Game::renderer.drawSprite(Game::player.getName(), Game::player.getPosition(), Game::player.getSize(), 0.0f, glm::vec3(1.0f, 1.0f, 1.0f), 0);
 
     shader.use();
 

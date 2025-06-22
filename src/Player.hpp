@@ -18,8 +18,11 @@ private:
     glm::vec2 position;
     glm::vec2 size;
 
-    std::string textureName = "face";
-    const char* texturePath = "../img/awesomeface.png";
+    std::string name = "player";
+    const char* texturePath = "../img/squid.png";
+
+    int count = 4;
+    float animTimeSeconds = 4.0f;
 
 public:
 
@@ -32,8 +35,10 @@ public:
     glm::vec2 getPosition();
     glm::vec2 getSize();
 
-    std::string getTextureName();
+    std::string getName();
     const char* getTexturePath();
+    int getCount();
+    float getAnimTimeSeconds();
 };
 
 #endif

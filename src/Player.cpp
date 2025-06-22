@@ -18,12 +18,20 @@ glm::vec2 Player::getSize() {
     return Player::size;
 }
 
-std::string Player::getTextureName() {
-    return Player::textureName;
+std::string Player::getName() {
+    return Player::name;
 }
 
 const char* Player::getTexturePath() {
     return Player::texturePath;
+}
+
+int Player::getCount() {
+    return Player::count;
+}
+
+float Player::getAnimTimeSeconds() {
+    return Player::animTimeSeconds;
 }
 
 void Player::move(GLFWwindow* window, float deltaTime) {
