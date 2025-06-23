@@ -4,7 +4,7 @@ Renderer::Renderer(Shader* shader) {
     Renderer::shader = shader;
 }
 
-void Renderer::loadBatch(std::string name, int count) {
+void Renderer::loadBatch(std::string name, int column, int row) {
     
     std::vector<unsigned int> VAOs;
 
@@ -20,51 +20,59 @@ void Renderer::loadBatch(std::string name, int count) {
 
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
-    for (int i = 0; i < count; i++) {
+    for (int i = 0; i < column; i++) {
+            for (int j = 0; j < row; j++) {
 
-        float one = static_cast<float>(1) / static_cast<float>(count);
+            float oneColumn = static_cast<float>(1) / static_cast<float>(column);
+            float oneRow = static_cast<float>(1) / static_cast<float>(row);
 
-        std::cout << one << "\n";
+            //std::cout << oneRow << "\n";
 
-        float start = static_cast<float>(one * i);
-        float end = static_cast<float>(one * i) + one;
+            float startColumn = static_cast<float>(oneColumn * i);
+            float endColumn = static_cast<float>(oneColumn * i) + oneColumn;
 
-        std::cout << start << "\n";
-        std::cout << end << "\n";
+            float startRow = static_cast<float>(oneRow * j);
+            float endRow = static_cast<float>(oneRow * j) + oneRow;
 
-        const float vertices[] = {
-            -1.0f,  1.0f, 0.0f, start,  1.0f,
-            -1.0f, -1.0f, 0.0f, start,  0.0f,
-             1.0f,  1.0f, 0.0f, end  ,  1.0f,
-             1.0f, -1.0f, 0.0f, end  ,  0.0f
-        };
+            //std::cout << startRow << "\n";
+            //std::cout << endRow << "\n";
+            
+            std::cout << j << "\n";
 
-        unsigned int VBO, VAO;
+            const float vertices[] = {
+                -1.0f,  1.0f, 0.0f, startColumn,  endRow,
+                -1.0f, -1.0f, 0.0f, startColumn,  startRow,
+                 1.0f,  1.0f, 0.0f, endColumn  ,  endRow,
+                 1.0f, -1.0f, 0.0f, endColumn  ,  startRow
+            };
 
-        glGenVertexArrays(1, &VAO);
-        glBindVertexArray(VAO);
+            unsigned int VBO, VAO;
 
-        glGenBuffers(1, &VBO);
-        glBindBuffer(GL_ARRAY_BUFFER, VBO);
+            glGenVertexArrays(1, &VAO);
+            glBindVertexArray(VAO);
 
-        glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+            glGenBuffers(1, &VBO);
+            glBindBuffer(GL_ARRAY_BUFFER, VBO);
 
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+            glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
-        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(0));
-        glEnableVertexAttribArray(0);
+            glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
 
-        glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
-        glEnableVertexAttribArray(1);
+            glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(0));
+            glEnableVertexAttribArray(0);
 
-        glBindVertexArray(0);
+            glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
+            glEnableVertexAttribArray(1);
 
-        glBindBuffer(GL_VERTEX_ARRAY, 0);
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+            glBindVertexArray(0);
 
-        glDeleteBuffers(1, &VBO);
+            glBindBuffer(GL_VERTEX_ARRAY, 0);
+            glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
-        VAOs.push_back(VAO);
+            glDeleteBuffers(1, &VBO);
+
+            VAOs.push_back(VAO);
+        }
     }
 
     Renderer::VAO[name] = VAOs;

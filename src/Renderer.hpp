@@ -41,7 +41,7 @@ public:
     Renderer() = default;
     ~Renderer() = default;
 
-    void loadBatch(std::string name, int count);
+    void loadBatch(std::string name, int column, int row);
     void loadTexture(const char* path, std::string name);
 
     void render(std::string name, int unit);

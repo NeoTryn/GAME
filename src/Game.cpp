@@ -40,7 +40,7 @@ Game::Game(const char* title, float frustum_width, float frustum_height) {
     std::cout << Game::player.getCount() << "\n";
 
     Game::renderer = {&shader};
-    Game::renderer.loadBatch(Game::player.getName(), Game::player.getCount());
+    Game::renderer.loadBatch(Game::player.getName(), Game::player.getCount(), 1);
 
     Game::renderer.loadTexture(Game::player.getTexturePath(), Game::player.getName());
 

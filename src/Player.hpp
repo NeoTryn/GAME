@@ -21,7 +21,9 @@ private:
     std::string name = "player";
     const char* texturePath = "../img/squid.png";
 
-    int count = 4;
+    int column = 4;
+    int row = 1;
+
     float animTimeSeconds = 4.0f;
 
 public:
@@ -37,7 +39,8 @@ public:
 
     std::string getName();
     const char* getTexturePath();
-    int getCount();
+    int getColumn();
+    int getRow();
     float getAnimTimeSeconds();
 };
 
