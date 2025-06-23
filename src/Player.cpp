@@ -26,8 +26,12 @@ const char* Player::getTexturePath() {
     return Player::texturePath;
 }
 
-int Player::getCount() {
-    return Player::count;
+int Player::getColumn() {
+    return Player::column;
+}
+
+int Player::getRow() {
+    return Player::row;
 }
 
 float Player::getAnimTimeSeconds() {

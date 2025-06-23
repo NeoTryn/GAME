@@ -37,10 +37,8 @@ Game::Game(const char* title, float frustum_width, float frustum_height) {
 
     Game::player = {glm::vec2(400.0f, 300.0f), glm::vec2(400.0f, 300.0f)};
 
-    std::cout << Game::player.getCount() << "\n";
-
     Game::renderer = {&shader};
-    Game::renderer.loadBatch(Game::player.getName(), Game::player.getCount(), 1);
+    Game::renderer.loadBatch(Game::player.getName(), Game::player.getColumn(), Game::player.getRow());
 
     Game::renderer.loadTexture(Game::player.getTexturePath(), Game::player.getName());
 
