@@ -1,31 +1,21 @@
+#include "GameObject.hpp"
+
 #include <glad/glad.h>
-
-#include <iostream>
-
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
-
 #include <GLFW/glfw3.h>
 
 #ifndef PLAYER_HPP
 #define PLAYER_HPP
 
-class Player {
+class Player : GameObject {
 private:
 
     float speed = 100.0f;
-    glm::vec2 position;
-    glm::vec2 size;
+    bool isMoving = false;
 
-    std::string name = "player";
-    const char* texturePath = "../img/squid.png";
+    float animTimeSeconds = 1.0f;
+    float currentTime = 0.0f;
 
-    int column = 4;
-    int row = 1;
-
-    float animTimeSeconds = 4.0f;
-
+    bool animDirection = true;
 public:
 
     Player(glm::vec2 position, glm::vec2 size);
@@ -37,11 +27,21 @@ public:
     glm::vec2 getPosition();
     glm::vec2 getSize();
 
-    std::string getName();
+    const std::string& getName();
     const char* getTexturePath();
-    int getColumn();
-    int getRow();
-    float getAnimTimeSeconds();
+
+    const int& getColumn();
+    const int& getRow();
+
+    const float& getAnimTimeSeconds();
+    const float& getCurrentTimeSeconds();
+
+    const bool& getIsMoving();
+    const bool& getAnimDirection();
+
+    void setCurrentTimeSeconds(const float& currentTime);
+    void setIsMoving(const bool& isMoving);
+    void setAnimDirection(const bool& animDirection);
 };
 
 #endif

@@ -37,7 +37,7 @@ void Renderer::loadBatch(std::string name, int column, int row) {
             //std::cout << startRow << "\n";
             //std::cout << endRow << "\n";
             
-            std::cout << j << "\n";
+            //std::cout << j << "\n";
 
             const float vertices[] = {
                 -1.0f,  1.0f, 0.0f, startColumn,  endRow,
@@ -130,10 +130,19 @@ void Renderer::drawSprite(std::string name, glm::vec2 position, glm::vec2 size, 
     glBindTexture(GL_TEXTURE_2D, Renderer::textures[name].texture);
 }
 
-void Renderer::render(std::string name, int unit) {
+void Renderer::render(std::string name, float time, int steps, float animTime) {
     Renderer::shader->use();
 
-    glBindVertexArray(Renderer::VAO[name][unit]);
+    // 4 seconds and 4 animation steps. if its 2 different numbers you have to calculate how long a step takes. steps = rows * columns.
+    // oneStepTime = animTime / animSteps. currentStep = static_cast<int>(currentTime / oneStepTime) 
+    float oneStepTime = animTime / steps;
+    int currentStep = static_cast<int>(time / oneStepTime);
+
+    if (currentStep >= Renderer::VAO[name].size()) {
+        currentStep = Renderer::VAO[name].size() - 1;
+    }
+
+    glBindVertexArray(Renderer::VAO[name][currentStep]);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, Renderer::EBO);
 
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);

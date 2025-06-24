@@ -43,6 +43,8 @@ Game::Game(const char* title, float frustum_width, float frustum_height) {
     Game::renderer.loadTexture(Game::player.getTexturePath(), Game::player.getName());
 
     Game::lastTime = static_cast<float>(glfwGetTime());
+
+    //std::cout << Game::player.getAnimTimeSeconds() << "\n";
 }
 
 GLFWwindow* Game::getWindow() {
@@ -72,7 +74,7 @@ void Game::clear() {
 }
 
 void Game::render() {
-    Game::renderer.render(Game::player.getName(), static_cast<int>(glfwGetTime()));
+    Game::renderer.render(Game::player.getName(), Game::player.getCurrentTimeSeconds(), Game::player.getColumn() * Game::player.getRow(), Game::player.getAnimTimeSeconds());
 }
 
 void Game::update() {
@@ -81,6 +83,24 @@ void Game::update() {
     Game::deltaTime = Game::currentTime - Game::lastTime;
     
     Game::lastTime = Game::currentTime;
+
+    if (Game::player.getCurrentTimeSeconds() <= Game::player.getAnimTimeSeconds() && Game::player.getAnimDirection()) {
+        Game::player.setCurrentTimeSeconds(Game::player.getCurrentTimeSeconds() + Game::deltaTime);
+    }
+    else if (Game::player.getCurrentTimeSeconds() >= 0.0f && !Game::player.getAnimDirection()){
+        Game::player.setCurrentTimeSeconds(Game::player.getCurrentTimeSeconds() - Game::deltaTime);
+    }
+    else if (Game::player.getCurrentTimeSeconds() <= Game::player.getAnimTimeSeconds()) {
+        Game::player.setAnimDirection(true);
+        Game::player.setCurrentTimeSeconds(Game::player.getCurrentTimeSeconds() + Game::deltaTime);
+    }
+    else if (Game::player.getCurrentTimeSeconds() >= 0.0f) {
+        Game::player.setAnimDirection(false);
+        Game::player.setCurrentTimeSeconds(Game::player.getCurrentTimeSeconds() - Game::deltaTime);
+    }
+
+    // 4 seconds and 4 animation steps. if its 2 different numbers you have to calculate how long a step takes. steps = rows * columns.
+    // oneStepTime = animTime / animSteps. currentStep = static_cast<int>(currentTime / oneStepTime) 
     
     // enabling player movement
     Game::player.move(Game::window, Game::deltaTime);

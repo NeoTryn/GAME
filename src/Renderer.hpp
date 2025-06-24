@@ -44,7 +44,7 @@ public:
     void loadBatch(std::string name, int column, int row);
     void loadTexture(const char* path, std::string name);
 
-    void render(std::string name, int unit);
+    void render(std::string name, float time, int steps, float animTime);
     void drawSprite(std::string name, glm::vec2 position, glm::vec2 size, float rotate, glm::vec3 color, int unit);
 
     std::unordered_map<std::string, std::vector<unsigned int>> getVAO();

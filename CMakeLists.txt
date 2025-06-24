@@ -17,6 +17,8 @@ add_executable(game
                src/stb_image_implementation.cpp
                src/Player.hpp
                src/Player.cpp
+               src/GameObject.hpp
+               src/GameObject.cpp
                )
 
 target_include_directories(game PUBLIC ~/include)
