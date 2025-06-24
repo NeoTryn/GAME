@@ -4,3 +4,4 @@ src/glad.c
 build
 .vscode
 CMakeCache.txt
+CMakeFiles
