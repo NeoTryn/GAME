@@ -1,3 +1,0 @@
-/home/felix/dev/game/build/CMakeFiles/game.dir
-/home/felix/dev/game/build/CMakeFiles/edit_cache.dir
-/home/felix/dev/game/build/CMakeFiles/rebuild_cache.dir

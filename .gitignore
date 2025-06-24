@@ -1,3 +1,6 @@
 img/awesomeface.png
 src/stb_image.h
 src/glad.c
+build
+.vscode
+CMakeCache.txt
