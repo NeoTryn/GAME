@@ -1,4 +1,4 @@
-#include "GameObject.hpp"
+#include "AnimatedObject.hpp"
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
@@ -6,21 +6,16 @@
 #ifndef PLAYER_HPP
 #define PLAYER_HPP
 
-class Player : GameObject {
+class Player : public AnimatedObject {
 private:
 
     float speed = 100.0f;
     bool isMoving = false;
 
-    float animTimeSeconds = 1.0f;
-    float currentTime = 0.0f;
-
-    bool animDirection = true;
 public:
 
     Player(glm::vec2 position, glm::vec2 size);
     Player();
-    ~Player() = default;
 
     void move(GLFWwindow* window, float deltaTime);
 
@@ -39,7 +34,7 @@ public:
     const bool& getIsMoving();
     const bool& getAnimDirection();
 
-    void setCurrentTimeSeconds(const float& currentTime);
+    void setCurrentTimeSeconds(const float& time);
     void setIsMoving(const bool& isMoving);
     void setAnimDirection(const bool& animDirection);
 };

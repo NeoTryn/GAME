@@ -19,6 +19,8 @@ add_executable(game
                src/Player.cpp
                src/GameObject.hpp
                src/GameObject.cpp
+               src/AnimatedObject.hpp
+               src/AnimatedObject.cpp
                )
 
 target_include_directories(game PUBLIC ~/include)

@@ -74,7 +74,7 @@ void Game::clear() {
 }
 
 void Game::render() {
-    Game::renderer.render(Game::player.getName(), Game::player.getCurrentTimeSeconds(), Game::player.getColumn() * Game::player.getRow(), Game::player.getAnimTimeSeconds());
+    Game::renderer.renderAnimatedObject(Game::player.getName(),&player);
 }
 
 void Game::update() {

@@ -130,25 +130,36 @@ void Renderer::drawSprite(std::string name, glm::vec2 position, glm::vec2 size, 
     glBindTexture(GL_TEXTURE_2D, Renderer::textures[name].texture);
 }
 
-void Renderer::render(std::string name, float time, int steps, float animTime) {
+void Renderer::renderStaticObject(std::string name, GameObject* object) {
     Renderer::shader->use();
 
     // 4 seconds and 4 animation steps. if its 2 different numbers you have to calculate how long a step takes. steps = rows * columns.
     // oneStepTime = animTime / animSteps. currentStep = static_cast<int>(currentTime / oneStepTime) 
-    float oneStepTime = animTime / steps;
-    int currentStep = static_cast<int>(time / oneStepTime);
-
-    if (currentStep >= Renderer::VAO[name].size()) {
-        currentStep = Renderer::VAO[name].size() - 1;
-    }
-
-    glBindVertexArray(Renderer::VAO[name][currentStep]);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, Renderer::EBO);
+    
+    glBindVertexArray(Renderer::VAO[name][0]);
 
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 
     glBindVertexArray(0);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, Renderer::EBO);
+}
+
+void Renderer::renderAnimatedObject(std::string name, AnimatedObject* object) {
+    Renderer::shader->use();
+
+    // 4 seconds and 4 animation steps. if its 2 different numbers you have to calculate how long a step takes. steps = rows * columns.
+    // oneStepTime = animTime / animSteps. currentStep = static_cast<int>(currentTime / oneStepTime) 
+    int currentStep = object->calculateCurrentStep();
+    glBindVertexArray(Renderer::VAO[name][currentStep]);
+
+    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+
+    glBindVertexArray(0);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, Renderer::EBO);
 }
 
 std::unordered_map<std::string, std::vector<unsigned int>> Renderer::getVAO() {

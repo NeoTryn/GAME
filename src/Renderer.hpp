@@ -11,6 +11,7 @@
 #include "stb_image.h"
 
 #include "Shader.hpp"
+#include "Player.hpp"
 
 #ifndef RENDERER_HPP
 #define RENDERER_HPP
@@ -44,7 +45,8 @@ public:
     void loadBatch(std::string name, int column, int row);
     void loadTexture(const char* path, std::string name);
 
-    void render(std::string name, float time, int steps, float animTime);
+    void renderStaticObject(std::string name, GameObject* object);
+    void renderAnimatedObject(std::string name, AnimatedObject* object);
     void drawSprite(std::string name, glm::vec2 position, glm::vec2 size, float rotate, glm::vec3 color, int unit);
 
     std::unordered_map<std::string, std::vector<unsigned int>> getVAO();

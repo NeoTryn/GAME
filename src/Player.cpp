@@ -9,6 +9,9 @@ Player::Player(glm::vec2 position, glm::vec2 size) {
 
     Player::column = 4;
     Player::row = 1;
+
+    Player::steps = column * row;
+    Player::animTime = 4.0f;
 }
 
 Player::Player() {
@@ -20,6 +23,9 @@ Player::Player() {
 
     Player::column = 4;
     Player::row = 1;
+
+    Player::steps = column * row;
+    Player::animTime = 4.0f;
 }
 
 glm::vec2 Player::getPosition() {
@@ -47,11 +53,11 @@ const int& Player::getRow() {
 }
 
 const float& Player::getAnimTimeSeconds() {
-    return Player::animTimeSeconds;
+    return Player::animTime;
 }
 
 const float& Player::getCurrentTimeSeconds() {
-    return Player::currentTime;
+    return Player::time;
 }
 
 const bool& Player::getIsMoving() {
@@ -66,8 +72,8 @@ void Player::setAnimDirection(const bool& animDirection) {
     Player::animDirection = animDirection;
 }
 
-void Player::setCurrentTimeSeconds(const float& currentTime) {
-    Player::currentTime = currentTime;
+void Player::setCurrentTimeSeconds(const float& time) {
+    Player::time = time;
 }
 
 void Player::setIsMoving(const bool& isMoving) {
