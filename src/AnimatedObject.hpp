@@ -1,5 +1,7 @@
 #include "GameObject.hpp"
 
+#include<cmath>
+
 #ifndef ANIMATED_OBJECT_HPP
 #define ANIMATED_OBJECT_HPP
 
