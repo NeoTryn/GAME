@@ -1,6 +1,6 @@
 #include "GameObject.hpp"
 
-#include<cmath>
+#include <cmath>
 
 #ifndef ANIMATED_OBJECT_HPP
 #define ANIMATED_OBJECT_HPP
@@ -16,7 +16,7 @@ protected:
 
 public:
 
-    int calculateCurrentStep();
+    int calculateCurrentStep(float deltaTime);
 };
 
 #endif

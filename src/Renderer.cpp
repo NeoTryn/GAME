@@ -146,12 +146,12 @@ void Renderer::renderStaticObject(std::string name, GameObject* object) {
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, Renderer::EBO);
 }
 
-void Renderer::renderAnimatedObject(std::string name, AnimatedObject* object) {
+void Renderer::renderAnimatedObject(std::string name, AnimatedObject* object, float deltaTime) {
     Renderer::shader->use();
 
     // 4 seconds and 4 animation steps. if its 2 different numbers you have to calculate how long a step takes. steps = rows * columns.
     // oneStepTime = animTime / animSteps. currentStep = static_cast<int>(currentTime / oneStepTime) 
-    int currentStep = object->calculateCurrentStep();
+    int currentStep = object->calculateCurrentStep(deltaTime);
     glBindVertexArray(Renderer::VAO[name][currentStep]);
 
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);

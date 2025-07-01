@@ -74,7 +74,7 @@ void Game::clear() {
 }
 
 void Game::render() {
-    Game::renderer.renderAnimatedObject(Game::player.getName(),&player);
+    Game::renderer.renderAnimatedObject(Game::player.getName(),&player, Game::deltaTime);
 }
 
 void Game::update() {
@@ -84,7 +84,7 @@ void Game::update() {
     
     Game::lastTime = Game::currentTime;
 
-    if (Game::player.getCurrentTimeSeconds() <= Game::player.getAnimTimeSeconds() && Game::player.getAnimDirection()) {
+    /*if (Game::player.getCurrentTimeSeconds() <= Game::player.getAnimTimeSeconds() && Game::player.getAnimDirection()) {
         Game::player.setCurrentTimeSeconds(Game::player.getCurrentTimeSeconds() + Game::deltaTime);
     }
     else if (Game::player.getCurrentTimeSeconds() >= 0.0f && !Game::player.getAnimDirection()){
@@ -97,7 +97,7 @@ void Game::update() {
     else if (Game::player.getCurrentTimeSeconds() >= 0.0f) {
         Game::player.setAnimDirection(false);
         Game::player.setCurrentTimeSeconds(Game::player.getCurrentTimeSeconds() - Game::deltaTime);
-    }
+    }*/
 
     // 4 seconds and 4 animation steps. if its 2 different numbers you have to calculate how long a step takes. steps = rows * columns.
     // oneStepTime = animTime / animSteps. currentStep = static_cast<int>(currentTime / oneStepTime) 

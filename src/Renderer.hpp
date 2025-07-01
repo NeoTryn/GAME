@@ -46,7 +46,7 @@ public:
     void loadTexture(const char* path, std::string name);
 
     void renderStaticObject(std::string name, GameObject* object);
-    void renderAnimatedObject(std::string name, AnimatedObject* object);
+    void renderAnimatedObject(std::string name, AnimatedObject* object, float deltaTime);
     void drawSprite(std::string name, glm::vec2 position, glm::vec2 size, float rotate, glm::vec3 color, int unit);
 
     std::unordered_map<std::string, std::vector<unsigned int>> getVAO();

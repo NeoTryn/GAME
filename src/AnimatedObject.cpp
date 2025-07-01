@@ -1,23 +1,19 @@
 #include "AnimatedObject.hpp"
 
-int AnimatedObject::calculateCurrentStep() {
+int AnimatedObject::calculateCurrentStep(float deltaTime) {
 
-    float animTime = AnimatedObject::animTime - 0.5f;
-    float time = AnimatedObject::time;
-
-    if (AnimatedObject::time < 0.5f) {
-
+    if (AnimatedObject::time >= AnimatedObject::animTime) {
+        AnimatedObject::time = 0.0f;
+    }
+    else {
+        AnimatedObject::time += deltaTime;
     }
 
-    int currentStep = static_cast<int>(AnimatedObject::time / (animTime / AnimatedObject::steps));
+    float result = std::round((AnimatedObject::time / (AnimatedObject::animTime / AnimatedObject::steps)));
 
-    if (currentStep >= AnimatedObject::steps) {
-        currentStep--;
+    if (static_cast<int>(result) >= AnimatedObject::steps) {
+        result = 0.0f;
     }
 
-    float result = (AnimatedObject::time / (AnimatedObject::animTime / AnimatedObject::steps));
-
-    std::cout << "Current Step: " << currentStep << " Calculation Result: " << result << " Time: " << AnimatedObject::time << "\n";
-
-    return currentStep;
+    return static_cast<int>(result);
 }
