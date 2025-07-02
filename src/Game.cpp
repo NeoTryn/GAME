@@ -35,7 +35,7 @@ Game::Game(const char* title, float frustum_width, float frustum_height) {
 
     Game::shader = {"../src/shaders/vertex_shader_1.glsl", "../src/shaders/fragment_shader_1.glsl"};
 
-    Game::player = {glm::vec2(400.0f, 300.0f), glm::vec2(400.0f, 300.0f)};
+    Game::player = {glm::vec2(100.0f, 50.0f), glm::vec2(10.0f, 10.0f)};
 
     Game::renderer = {&shader};
     Game::renderer.loadBatch(Game::player.getName(), Game::player.getColumn(), Game::player.getRow());

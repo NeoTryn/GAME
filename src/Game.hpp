@@ -6,8 +6,8 @@
 #ifndef GAME_HPP
 #define GAME_HPP
 
-#define FRUSTUM_WIDTH 800.0f
-#define FRUSTUM_HEIGHT 600.0f
+#define FRUSTUM_WIDTH 160.0f
+#define FRUSTUM_HEIGHT 90.0f
 
 class Game {
 private:
